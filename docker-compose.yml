@@ -42,5 +42,10 @@ services:
       - be
     restart: always
 
+  cloudflared:
+    image: cloudflare/cloudflared:latest
+    container_name: cloudflared
+    command: tunnel --no-autoupdate run --token eyJhIjoiM2NjZGM4YmUwMzMzOGJlNWJjYjM1ZWIxYzc2OGExYzQiLCJ0IjoiOGM4YTcxMGItOWViNy00YzI3LWE0NDItYjhmZWQ5NDUwY2MwIiwicyI6Ik1UTTBNbUZqWlRFdFlURmtNeTAwTkRFNExXRm1ZakV0WlRkbE1ERmtaakZqTmpVNSJ9
+
 volumes:
   postgres_data:
