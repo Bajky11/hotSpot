@@ -13,6 +13,8 @@ services:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
+    networks:
+      - bajerlukascz_network
 
   be:
     build: ./backend
@@ -26,7 +28,9 @@ services:
     ports:
       - "8080:8080"
     restart: always
-    command: ["java", "-jar", "app.jar"]
+    networks:
+      - bajerlukascz_network
+    command: [ "java", "-jar", "app.jar" ]
 
   fe:
     build:
@@ -34,18 +38,18 @@ services:
       args:
         REACT_APP_API_URL: ${REACT_APP_API_URL}
     container_name: friends-fe
-    environment:
-      - REACT_APP_API_URL=http://localhost:8080/api
     ports:
       - "80:80"
     depends_on:
       - be
     restart: always
-
-  cloudflared:
-    image: cloudflare/cloudflared:latest
-    container_name: cloudflared
-    command: tunnel --no-autoupdate run --token eyJhIjoiM2NjZGM4YmUwMzMzOGJlNWJjYjM1ZWIxYzc2OGExYzQiLCJ0IjoiOGM4YTcxMGItOWViNy00YzI3LWE0NDItYjhmZWQ5NDUwY2MwIiwicyI6Ik1UTTBNbUZqWlRFdFlURmtNeTAwTkRFNExXRm1ZakV0WlRkbE1ERmtaakZqTmpVNSJ9
+    networks:
+      - bajerlukascz_network
 
 volumes:
   postgres_data:
+
+
+networks:
+  bajerlukascz_network:
+    external: true
