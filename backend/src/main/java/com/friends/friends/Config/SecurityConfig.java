@@ -52,7 +52,7 @@ public class SecurityConfig {
         CorsConfiguration configuration = new CorsConfiguration();
 
         // Povolení frontendu
-        configuration.setAllowedOrigins(List.of("http://localhost:3000", "http://localhost:3001", "http://localhost")); // Zkusíme místo Patterns normální Origins
+        configuration.setAllowedOrigins(List.of("http://localhost", "http://localhost:3000", "http://localhost:3001", "https://www.bajerlukas.cz")); // Zkusíme místo Patterns normální Origins
         configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         configuration.setAllowedHeaders(List.of("Authorization", "Content-Type"));
         configuration.setExposedHeaders(List.of("Authorization")); // Umožní přístup k tokenu v odpovědi
