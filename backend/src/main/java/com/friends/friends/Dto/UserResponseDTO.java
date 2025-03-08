@@ -1,4 +1,4 @@
-package com.friends.friends.dto;
+package com.friends.friends.Dto;
 
 import com.friends.friends.Entity.User;
 import lombok.Getter;

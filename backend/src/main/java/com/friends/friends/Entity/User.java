@@ -1,6 +1,5 @@
 package com.friends.friends.Entity;
 
-import com.friends.friends.dto.RegistrationDTO;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -28,9 +27,4 @@ public class User {
     @Column(name = "password", nullable = false)
     private String password;
 
-    public User(RegistrationDTO registrationDTO) {
-        this.username = registrationDTO.getUsername();
-        this.email = registrationDTO.getEmail();
-        this.password = registrationDTO.getPassword();
-    }
 }

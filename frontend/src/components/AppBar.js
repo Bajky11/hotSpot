@@ -3,7 +3,7 @@ import {useNavigate} from "react-router-dom";
 import LogoutIcon from "@mui/icons-material/Logout";
 import {useSelector} from "react-redux";
 
-export const TopMenu = () => {
+export const AppBar = () => {
     const navigate = useNavigate();
     const pageLabel = useSelector(state => state.app.pageLabel)
 

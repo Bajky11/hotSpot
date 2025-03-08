@@ -3,14 +3,15 @@ version: '3.8'
 services:
   db:
     image: postgres:15
-    container_name: friends-db
+    container_name: "${APP_NAME}-db"
     restart: always
     environment:
       POSTGRES_USER: ${SPRING_DATASOURCE_USERNAME}
       POSTGRES_PASSWORD: ${SPRING_DATASOURCE_PASSWORD}
-      POSTGRES_DB: friends_db
+      POSTGRES_DB: timeIsMoney_db
+      PGPORT: "${DB_PORT}"
     ports:
-      - "5432:5432"
+      - "${DB_PORTS}"
     volumes:
       - postgres_data:/var/lib/postgresql/data
     networks:
@@ -18,7 +19,7 @@ services:
 
   be:
     build: ./backend
-    container_name: friends-be
+    container_name: "${APP_NAME}-be"
     depends_on:
       - db
     environment:
@@ -26,7 +27,7 @@ services:
       - SPRING_DATASOURCE_USERNAME=${SPRING_DATASOURCE_USERNAME}
       - SPRING_DATASOURCE_PASSWORD=${SPRING_DATASOURCE_PASSWORD}
     ports:
-      - "8080:8080"
+      - "${BE_PORTS}"
     restart: always
     networks:
       - bajerlukascz_network
@@ -36,10 +37,10 @@ services:
     build:
       context: ./frontend
       args:
-        REACT_APP_API_URL: ${REACT_APP_API_URL}
-    container_name: friends-fe
+        REACT_APP_API_URL: ${REACT_APP_API_ULR_LOCAL}
+    container_name: "${APP_NAME}-fe"
     ports:
-      - "80:80"
+      - "${FE_PORTS}"
     depends_on:
       - be
     restart: always

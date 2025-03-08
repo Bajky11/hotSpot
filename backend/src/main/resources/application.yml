@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/friends_db
+    url: jdbc:postgresql://localhost:5432/timeIsMoney_db
     username: user
     password: password
     driver-class-name: org.postgresql.Driver
@@ -26,5 +26,6 @@ springdoc:
     enabled: true
 
 server:
+  port: 8081
   servlet:
-    context-path: /friends
+    context-path: /timeIsMoney

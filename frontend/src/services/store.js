@@ -2,15 +2,15 @@ import {configureStore} from "@reduxjs/toolkit";
 import authReducer from "./slice/auth/authSlice"
 import appReducer from "./slice/app/appSlice"
 import {authApi} from "./api/auth/authApi";
-import {friendsApi} from "./api/friends/friendsApi";
+import {tasksApi} from "./api/tasks/tasksApi";
 
 export const store = configureStore({
     reducer: {
         auth: authReducer,
         app: appReducer,
         [authApi.reducerPath]: authApi.reducer,
-        [friendsApi.reducerPath]: friendsApi.reducer,
+        [tasksApi.reducerPath]: tasksApi.reducer,
     }, middleware: (getDefaultMiddleware) => getDefaultMiddleware()
         .concat(authApi.middleware)
-        .concat(friendsApi.middleware),
+        .concat(tasksApi.middleware),
 });

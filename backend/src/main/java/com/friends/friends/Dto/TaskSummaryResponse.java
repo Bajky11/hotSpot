@@ -1,4 +1,6 @@
 package com.friends.friends.Dto;
 
-public class TaskSummaryResponse {
+import java.math.BigDecimal;
+
+public record TaskSummaryResponse(BigDecimal totalEarnings, long totalTime, Integer totalTasks) {
 }

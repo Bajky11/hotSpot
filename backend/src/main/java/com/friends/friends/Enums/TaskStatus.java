@@ -1,4 +1,5 @@
 package com.friends.friends.Enums;
 
-public class TaskStatus {
+public enum TaskStatus {
+    RUNNING, PAUSED, COMPLETED
 }
