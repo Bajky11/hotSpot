@@ -8,7 +8,7 @@ export const TopMenu = () => {
     const pageLabel = useSelector(state => state.app.pageLabel)
 
     return (
-        <Stack px={2} pt={2} borderBottom={"1px solid lightgray"}>
+        <Stack px={2} pt={2}>
             <Stack direction="row" justifyContent={"space-between"} alignItems={"center"}>
                 <Typography variant={"h5"}>{pageLabel}</Typography>
 
