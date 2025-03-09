@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -87,8 +88,13 @@ public class TaskController {
         task.setStatus(taskDTO.getStatus());
         task.setCreatedAt(LocalDateTime.now());
         task.setTotalTime(0L);
-        task.setEarnings(BigDecimal.ZERO);
         task.setTotalTime(taskDTO.getTotalTime());
+
+        BigDecimal earned = task.getHourlyRate()
+                .multiply(BigDecimal.valueOf(taskDTO.getTotalTime()))
+                .divide(BigDecimal.valueOf(3600), 2, RoundingMode.HALF_UP);
+
+        task.setEarnings(earned);
 
         // Pokud je task hned "RUNNING", nastavíme startTime
         if (task.getStatus() == TaskStatus.RUNNING) {

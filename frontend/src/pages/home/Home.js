@@ -20,6 +20,7 @@ import {
 import {
     useCompleteTaskMutation,
     useCreateTaskMutation,
+    useDeleteTaskMutation,
     useGetActiveTaskQuery,
     useGetTasksQuery,
     useGetTaskSummaryQuery,
@@ -28,13 +29,16 @@ import {
 } from "../../services/api/tasks/tasksApi";
 import { Fragment, useCallback, useEffect, useRef, useState } from "react";
 import { formatDateToDDMMYYYY, formatSecondsToHHmm } from "../../common/functions/functions";
-import useForm from "../../hooks/useForm";
+import useForm from "../../common/hooks/useForm";
+import useModal from "../../common/hooks/useModal";
 
 export const Home = () => {
 
     const [timePeriod, setTimePeriod] = useState(`month`);
     const [open, setOpen] = useState(false);
     const { data: tasks, isLoading, error } = useGetTasksQuery({ filter: timePeriod });
+
+    const { open: updateModalOpen, data: updateModalData, handleOpen: handleOpenUpdateModal, handleClose: handleCloseUpdateModal } = useModal();
 
     if (isLoading) return <p>Načítání...</p>;
     if (error) return <p>Chyba při načítání</p>;
@@ -77,12 +81,13 @@ export const Home = () => {
 
         <Stack px={2} pt={2} spacing={2}>
             {tasks.map((task, index) => (<Fragment key={task.id}>
-                <TaskListItem task={task} />
+                <TaskListItem task={task} onClick={handleOpenUpdateModal} />
                 {index < tasks.length - 1 && <Divider />}
             </Fragment>))}
         </Stack>
         <FloatingButton onClick={() => setOpen(true)} />
         <AddNewTaskModal open={open} setOpen={setOpen} />
+        <UpdateTaskModal open={updateModalOpen} onClose={handleCloseUpdateModal} data={updateModalData}/>
     </Stack>
 
     )
@@ -96,15 +101,21 @@ export const Home = () => {
 }
  */
 
-const UpdateTaskModal = ({ open, setOpen }) => {
+const UpdateTaskModal = ({ open, onClose, data }) => {
+    const [deleteTask] = useDeleteTaskMutation();
+
+    const handleDeleteTask = () => {
+        deleteTask(data.id)
+        onClose()
+    }
 
     return (
         <ReusableModal open={open}
-            onClose={() => setOpen(false)}
-            title="Nový záznam"
+            onClose={onClose}
+            title="Aktualizace záznamu"
         >
             <Stack spacing={2}>
-                ahoj
+               <Button variant="contained" onClick={handleDeleteTask}>Odstranit</Button>
             </Stack>
         </ReusableModal>
     )
@@ -133,7 +144,7 @@ const AddNewTaskModal = ({ open, setOpen }) => {
 
         console.log("📝 Odesílám úkol:", { ...formData, status });
 
-        const totalTime =formData.hours * 3600 + formData.minutes * 60
+        const totalTime = formData.hours * 3600 + formData.minutes * 60
 
         try {
             await createTask({
@@ -383,10 +394,9 @@ function Summary({ timePeriod }) {
     </Stack>)
 }
 
-function TaskListItem({ task }) {
+function TaskListItem({ task, onClick }) {
 
     const [createTask] = useCreateTaskMutation();
-    const [open, setOpen] = useState(false);
 
 
     const handleCreate = async (event) => {
@@ -397,7 +407,7 @@ function TaskListItem({ task }) {
     };
 
     return (
-        <Stack spacing={1} onClick={() => setOpen(true)}>
+        <Stack spacing={1} onClick={() => onClick(task)}>
             <Typography fontSize={18}>{task.name}</Typography>
             <Stack direction={"row"} alignItems={"center"} justifyContent={"space-between"}>
                 <Typography fontSize={14} color={"gray"}>{formatDateToDDMMYYYY(task.createdAt)}</Typography>
@@ -413,7 +423,7 @@ function TaskListItem({ task }) {
                     />
                 </Stack>
             </Stack>
-            <UpdateTaskModal open={open} setOpen={setOpen} />
+
         </Stack>
     )
 }
