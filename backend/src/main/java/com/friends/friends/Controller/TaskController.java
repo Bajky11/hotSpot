@@ -88,6 +88,12 @@ public class TaskController {
         task.setCreatedAt(LocalDateTime.now());
         task.setTotalTime(0L);
         task.setEarnings(BigDecimal.ZERO);
+        task.setTotalTime(taskDTO.getTotalTime());
+
+        // Pokud je task hned "RUNNING", nastavíme startTime
+        if (task.getStatus() == TaskStatus.RUNNING) {
+            task.setStartTime(LocalDateTime.now());
+        }
 
         Task savedTask = taskRepository.save(task);
         return ResponseEntity.ok(savedTask);

@@ -5,6 +5,7 @@ import {
     Divider,
     Fab,
     FormControl,
+    IconButton,
     InputLabel,
     MenuItem, Modal,
     Select,
@@ -13,6 +14,7 @@ import {
 } from "@mui/material";
 import {
     Add,
+    Close,
     PauseOutlined, PlayArrowOutlined, StopOutlined
 } from "@mui/icons-material";
 import {
@@ -24,64 +26,64 @@ import {
     usePauseTaskMutation,
     useStartTaskMutation
 } from "../../services/api/tasks/tasksApi";
-import {Fragment, useEffect, useRef, useState} from "react";
-import {formatDateToDDMMYYYY, formatSecondsToHHmm} from "../../common/functions/functions";
+import { Fragment, useCallback, useEffect, useRef, useState } from "react";
+import { formatDateToDDMMYYYY, formatSecondsToHHmm } from "../../common/functions/functions";
 import useForm from "../../hooks/useForm";
 
 export const Home = () => {
 
     const [timePeriod, setTimePeriod] = useState(`month`);
     const [open, setOpen] = useState(false);
-    const {data: tasks, isLoading, error} = useGetTasksQuery({filter: timePeriod});
+    const { data: tasks, isLoading, error } = useGetTasksQuery({ filter: timePeriod });
 
     if (isLoading) return <p>Načítání...</p>;
     if (error) return <p>Chyba při načítání</p>;
 
     return (<Stack spacing={2}>
-            <ActiveTasks/>
-            <Stack direction={"row"} spacing={2}>
+        <ActiveTasks />
+        <Stack direction={"row"} spacing={2}>
 
-                <FormControl fullWidth>
-                    <InputLabel id="demo-simple-select-label">Time period</InputLabel>
-                    <Select
-                        labelId="demo-simple-select-label"
-                        value={timePeriod}
-                        onChange={(e) => setTimePeriod(e.target.value)}
-                        label="Time period"
-                        variant={"outlined"}>
-                        <MenuItem value={`week`}>Week</MenuItem>
-                        <MenuItem value={`month`}>Month</MenuItem>
-                        <MenuItem value={`year`}>Year</MenuItem>
-                        <MenuItem value={`all`}>All</MenuItem>
-                    </Select>
-                </FormControl>
+            <FormControl fullWidth>
+                <InputLabel id="demo-simple-select-label">Time period</InputLabel>
+                <Select
+                    labelId="demo-simple-select-label"
+                    value={timePeriod}
+                    onChange={(e) => setTimePeriod(e.target.value)}
+                    label="Time period"
+                    variant={"outlined"}>
+                    <MenuItem value={`week`}>Week</MenuItem>
+                    <MenuItem value={`month`}>Month</MenuItem>
+                    <MenuItem value={`year`}>Year</MenuItem>
+                    <MenuItem value={`all`}>All</MenuItem>
+                </Select>
+            </FormControl>
 
-                <FormControl fullWidth>
-                    <InputLabel id="demo-simple-select-label">Tag</InputLabel>
-                    <Select
-                        labelId="demo-simple-select-label"
-                        value={10}
-                        label="Tag"
-                        variant={"outlined"}>
-                        <MenuItem value={10}>Ten</MenuItem>
-                        <MenuItem value={20}>Twenty</MenuItem>
-                        <MenuItem value={30}>Thirty</MenuItem>
-                    </Select>
-                </FormControl>
+            <FormControl fullWidth>
+                <InputLabel id="demo-simple-select-label">Tag</InputLabel>
+                <Select
+                    labelId="demo-simple-select-label"
+                    value={10}
+                    label="Tag"
+                    variant={"outlined"}>
+                    <MenuItem value={10}>Ten</MenuItem>
+                    <MenuItem value={20}>Twenty</MenuItem>
+                    <MenuItem value={30}>Thirty</MenuItem>
+                </Select>
+            </FormControl>
 
 
-            </Stack>
-            <Summary timePeriod={timePeriod}/>
-
-            <Stack px={2} pt={2} spacing={2}>
-                {tasks.map((task, index) => (<Fragment key={task.id}>
-                    <TaskListItem task={task}/>
-                    {index < tasks.length - 1 && <Divider/>}
-                </Fragment>))}
-            </Stack>
-            <FloatingButton onClick={() => setOpen(true)}/>
-            <AddNewTaskModal open={open} setOpen={setOpen}/>
         </Stack>
+        <Summary timePeriod={timePeriod} />
+
+        <Stack px={2} pt={2} spacing={2}>
+            {tasks.map((task, index) => (<Fragment key={task.id}>
+                <TaskListItem task={task} />
+                {index < tasks.length - 1 && <Divider />}
+            </Fragment>))}
+        </Stack>
+        <FloatingButton onClick={() => setOpen(true)} />
+        <AddNewTaskModal open={open} setOpen={setOpen} />
+    </Stack>
 
     )
 }
@@ -94,12 +96,12 @@ export const Home = () => {
 }
  */
 
-const UpdateTaskModal = ({open, setOpen}) => {
+const UpdateTaskModal = ({ open, setOpen }) => {
 
     return (
         <ReusableModal open={open}
-                       onClose={() => setOpen(false)}
-                       title="Nový záznam"
+            onClose={() => setOpen(false)}
+            title="Nový záznam"
         >
             <Stack spacing={2}>
                 ahoj
@@ -108,56 +110,93 @@ const UpdateTaskModal = ({open, setOpen}) => {
     )
 }
 
-const AddNewTaskModal = ({open, setOpen}) => {
+const AddNewTaskModal = ({ open, setOpen }) => {
     const [createTask] = useCreateTaskMutation();
 
-    const {formData, handleChange, resetForm} = useForm({
+    const { formData, handleChange, resetForm } = useForm({
         name: "",
         tag: "work",
+        hours: "",
+        minutes: ""
     });
 
-    const handleSubmit = async (event, formData) => {
-        event.preventDefault();
-        console.log("Odesláno:", formData);
+    const handleStartTask = useCallback((e) => {
+        handleCreateTask(e, formData, "RUNNING");
+    }, [formData]);
 
-        await createTask({
-            name: formData.name,
-            hourlyRate: 450,
-            tag: formData.tag,
-            status: "PAUSED"
-        });
+    const handleAddTask = useCallback((e) => {
+        handleCreateTask(e, formData, "COMPLETED");
+    }, [formData]);
 
-        resetForm();
-        setOpen(false);
+    const handleCreateTask = async (event, formData, status) => {
+        event.preventDefault(); // ✅ Zabráníme přesměrování formuláře
+
+        console.log("📝 Odesílám úkol:", { ...formData, status });
+
+        const totalTime =formData.hours * 3600 + formData.minutes * 60
+
+        try {
+            await createTask({
+                name: formData.name.trim(), // ✅ Ořezání bílých znaků
+                hourlyRate: 450,
+                tag: formData.tag.trim(),
+                status: status,
+                totalTime: totalTime || 0
+            });
+
+            resetForm();
+            setOpen(false);
+        } catch (error) {
+            console.error("Chyba při vytváření úkolu:", error);
+        }
     };
 
     return (
         <ReusableModal open={open}
-                       onClose={() => setOpen(false)}
-                       onSubmit={(e) => handleSubmit(e, formData)}
-                       title="Nový záznam"
+            onClose={() => setOpen(false)}
+            title="Nový záznam"
         >
+            <Typography color="gray">Základní údaje</Typography>
             <Stack spacing={2}>
                 <TextField label="Název"
-                           name={"name"}
-                           required={true}
-                           fullWidth
-                           value={formData.name}
-                           onChange={handleChange}
+                    name={"name"}
+                    required={true}
+                    fullWidth
+                    value={formData.name}
+                    onChange={handleChange}
                 />
                 <TextField label="Tag"
-                           name={"tag"}
-                           required={true}
-                           fullWidth
-                           value={formData.tag}
-                           onChange={handleChange}
+                    name={"tag"}
+                    required={true}
+                    fullWidth
+                    value={formData.tag}
+                    onChange={handleChange}
                 />
+                <Typography color="gray">Odpracováno</Typography>
+                <Stack direction={"row"} spacing={2}>
+                    <TextField label="Hodiny"
+                        name={"hours"}
+                        fullWidth
+                        value={formData.hours}
+                        onChange={handleChange}
+                    />
+                    <TextField label="Minuty"
+                        name={"minutes"}
+                        fullWidth
+                        value={formData.minutes}
+                        onChange={handleChange}
+                    />
+                </Stack>
+                <Stack direction={"row"} spacing={2} justifyContent={"flex-end"}>
+                    <Button variant="outlined" onClick={handleAddTask}>přidat úkol</Button>
+                    <Button variant="contained" onClick={handleStartTask}>splustit úkol</Button>
+                </Stack>
             </Stack>
         </ReusableModal>
     )
 }
 
-const ReusableModal = ({open, onClose, onSubmit, title, children}) => {
+const ReusableModal = ({ open, onClose, title, children }) => {
     return (
         <Modal open={open} onClose={onClose}>
             <Box
@@ -176,25 +215,22 @@ const ReusableModal = ({open, onClose, onSubmit, title, children}) => {
                 }}
             >
                 <Stack spacing={2}>
-                    <Typography variant="h6" component="h2">
-                        {title}
-                    </Typography>
-                    {children}
-                    <Stack direction="row" spacing={2} justifyContent="flex-end">
-                        <Button sx={{mt: 2}} variant="outlined" onClick={onClose}>
-                            Zavřít
-                        </Button>
-                        <Button sx={{mt: 2}} variant="contained" onClick={onSubmit}>
-                            Ok
-                        </Button>
+                    <Stack direction={"row"} justifyContent={"space-between"}>
+                        <Typography variant="h6" component="h2">
+                            {title}
+                        </Typography>
+                        <IconButton onClick={onClose}>
+                            <Close />
+                        </IconButton>
                     </Stack>
+                    {children}
                 </Stack>
             </Box>
         </Modal>
     );
 };
 
-const FloatingButton = ({onClick}) => {
+const FloatingButton = ({ onClick }) => {
     return (
         <Box
             sx={{
@@ -205,7 +241,7 @@ const FloatingButton = ({onClick}) => {
             }}
         >
             <Fab color="#D7D7D7" aria-label="add" onClick={onClick}>
-                <Add/>
+                <Add />
             </Fab>
         </Box>
     );
@@ -215,7 +251,7 @@ export default FloatingButton;
 
 function ActiveTasks() {
 
-    const {data: tasks, isLoading, error} = useGetActiveTaskQuery();
+    const { data: tasks, isLoading, error } = useGetActiveTaskQuery();
 
     if (isLoading) return <p>Načítání...</p>;
     if (error) return null;
@@ -223,22 +259,23 @@ function ActiveTasks() {
 
     return (<Stack spacing={2}>
 
-            {
-                tasks.map((task, index) => {
-                    return <ActiveTaskItem task={task} key={index}/>
+        {
+            tasks.map((task, index) => {
+                return <ActiveTaskItem task={task} key={index} />
 
-                })
-            }
-        </Stack>
+            })
+        }
+    </Stack>
 
     )
 }
 
-function ActiveTaskItem({task}) {
-    const [elapsedTime, setElapsedTime] = useState(0);
+function ActiveTaskItem({ task }) {
+    const [elapsedTime, setElapsedTime] = useState(task.totalTime || 0);
     const [startTask] = useStartTaskMutation();
     const [pauseTask] = usePauseTaskMutation();
     const [completeTask] = useCompleteTaskMutation();
+    const timerRef = useRef(null);
 
     const red = "184,72,72";
     const green = "10,147,0";
@@ -257,26 +294,28 @@ function ActiveTaskItem({task}) {
 
     const calculateElapsedTime = (startTime, totalTime) => {
         if (!startTime || isNaN(Date.parse(startTime))) {
-            return totalTime; // Pokud startTime není platné, vracíme jen totalTime
+            return totalTime; // Pokud startTime není platné, vracíme totalTime
         }
 
-        const startTimestamp = new Date(startTime).getTime();
+        const startTimestamp = new Date(startTime + "Z").getTime();
         const nowTimestamp = Date.now();
-        const elapsedSinceStart = Math.floor((nowTimestamp - startTimestamp) / 1000); // Rozdíl v sekundách
+        // Rozdíl v sekundách (zabráníme záporné hodnotě, pokud by startTime byl v budoucnu)
+        const elapsedSinceStart = Math.max(Math.floor((nowTimestamp - startTimestamp) / 1000), 0);
 
-        return totalTime + Math.max(elapsedSinceStart, 0); // Zabráníme záporné hodnotě
+        return totalTime + elapsedSinceStart;
     };
 
-    const timerRef = useRef(null);
 
     useEffect(() => {
-        if (task.status === "RUNNING" && timerRef.current === null) {
+        setElapsedTime(calculateElapsedTime(task.startTime, task.totalTime));
+    }, [task.startTime]);
+
+    useEffect(() => {
+        if (task.status === "RUNNING") {
             timerRef.current = setInterval(() => {
                 setElapsedTime(calculateElapsedTime(task.startTime, task.totalTime));
             }, 1000);
-        }
-
-        if (task.status === "PAUSED" || task.status === "COMPLETED") {
+        } else {
             clearInterval(timerRef.current);
             timerRef.current = null;
         }
@@ -285,50 +324,50 @@ function ActiveTaskItem({task}) {
             clearInterval(timerRef.current);
             timerRef.current = null;
         };
-    }, [task.status, task.startTime, task.totalTime]);
+    }, [task.status]);
 
     return (
         <Stack bgcolor={`rgba(${resolveStatusColor(task.status)}, 0.1)`}
-               border={`1px solid rgba(${resolveStatusColor(task.status)}, 0.5)`}
-               borderRadius={4}
-               spacing={1}
-               padding={1.5}>
+            border={`1px solid rgba(${resolveStatusColor(task.status)}, 0.5)`}
+            borderRadius={4}
+            spacing={1}
+            padding={1.5}>
             <Stack direction={`row`} spacing={2} alignItems={"center"}>
                 <Typography fontSize={20}>{task.name}</Typography>
-                <Chip label={task.tag} sx={{height: 30, color: "gray"}}/>
+                <Chip label={task.tag} sx={{ height: 30, color: "gray" }} />
             </Stack>
             <Stack direction={"row"} justifyContent={"space-between"} alignItems={"center"}>
                 <Typography fontSize={24}
-                            fontWeight={"bold"}>{formatSecondsToHHmm(elapsedTime, true)}</Typography>
+                    fontWeight={"bold"}>{formatSecondsToHHmm(elapsedTime, true)}</Typography>
                 <Stack direction={"row"} spacing={2}>
-                    <TaskActionItem Icon={<StopOutlined/>} bgColor={`#B84848`}
-                                    onClick={() => completeTask(task.id)}/>
-                    <TaskActionItem Icon={<PlayArrowOutlined/>} bgColor={`#0A9300`}
-                                    onClick={() => startTask(task.id)}/>
-                    <TaskActionItem Icon={<PauseOutlined/>} bgColor={`#D07027`}
-                                    onClick={() => pauseTask(task.id)}/>
+                    <TaskActionItem Icon={<StopOutlined />} bgColor={`#B84848`}
+                        onClick={() => completeTask(task.id)} />
+                    <TaskActionItem Icon={<PlayArrowOutlined />} bgColor={`#0A9300`}
+                        onClick={() => startTask(task.id)} />
+                    <TaskActionItem Icon={<PauseOutlined />} bgColor={`#D07027`}
+                        onClick={() => pauseTask(task.id)} />
                 </Stack>
             </Stack>
         </Stack>
     )
 }
 
-function TaskActionItem({Icon, bgColor, border, onClick}) {
+function TaskActionItem({ Icon, bgColor, border, onClick }) {
     return (<Stack bgcolor={bgColor} borderRadius={2} border={border || null} onClick={onClick}>
         {Icon}
     </Stack>)
 }
 
-function Summary({timePeriod}) {
+function Summary({ timePeriod }) {
 
-    const {data: summary, summaryIsLoading, summaryError} = useGetTaskSummaryQuery({filter: timePeriod});
+    const { data: summary, summaryIsLoading, summaryError } = useGetTaskSummaryQuery({ filter: timePeriod });
 
     if (summaryIsLoading) return <p>Načítání...</p>;
     if (summaryError) return <p>Chyba při načítání</p>;
 
     return (<Stack bgcolor={`#F6F6F6`} borderRadius={4} border={"1px solid rgba(215, 215, 215, 0.5)"} p={2}
-                   direction={"row"}
-                   justifyContent={"space-between"}>
+        direction={"row"}
+        justifyContent={"space-between"}>
         <Stack alignItems={"center"}>
             <Typography>Výdělek</Typography>
             <Typography fontWeight={"bold"}>{summary?.totalEarnings + " Kč"}</Typography>
@@ -344,7 +383,7 @@ function Summary({timePeriod}) {
     </Stack>)
 }
 
-function TaskListItem({task}) {
+function TaskListItem({ task }) {
 
     const [createTask] = useCreateTaskMutation();
     const [open, setOpen] = useState(false);
@@ -362,12 +401,12 @@ function TaskListItem({task}) {
             <Typography fontSize={18}>{task.name}</Typography>
             <Stack direction={"row"} alignItems={"center"} justifyContent={"space-between"}>
                 <Typography fontSize={14} color={"gray"}>{formatDateToDDMMYYYY(task.createdAt)}</Typography>
-                <Chip label={task.tag} sx={{height: 30, color: "gray", border: "1px solid rgba(215, 215, 215, 0.5)"}}
-                      variant="outlined"/>
+                <Chip label={task.tag} sx={{ height: 30, color: "gray", border: "1px solid rgba(215, 215, 215, 0.5)" }}
+                    variant="outlined" />
                 <Stack direction={"row"} spacing={2} alignItems={"center"}>
                     <Typography fontSize={14} color={"gray"}>{formatSecondsToHHmm(task.totalTime)}</Typography>
                     <TaskActionItem
-                        Icon={<PlayArrowOutlined/>}
+                        Icon={<PlayArrowOutlined />}
                         bgColor={`#F6F6F6`}
                         border={"1px solid rgba(215, 215, 215, 0.5)"}
                         onClick={handleCreate}

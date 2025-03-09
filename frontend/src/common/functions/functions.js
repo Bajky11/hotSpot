@@ -1,12 +1,16 @@
 export const formatSecondsToHHmm = (_seconds, showSeconds = false) => {
-    const hours = Math.floor(_seconds / 3600);
+    if (isNaN(_seconds) || _seconds < 0) {
+        _seconds = 0;
+    }
+
+    const hours = Math.floor((_seconds % 86400) / 3600); 
     const minutes = Math.floor((_seconds % 3600) / 60);
     const seconds = _seconds % 60;
 
-    const HHmm = `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}`
-    const ss = `${String(seconds).padStart(2, '0')}`
+    const HHmm = `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}`;
+    const ss = `${String(seconds).padStart(2, '0')}`;
 
-    return `${HHmm}${showSeconds ? ":"+ss : "" }`;
+    return `${HHmm}${showSeconds ? ":" + ss : ""}`;
 };
 
 export const formatDateToDDMMYYYY = (isoString) => {

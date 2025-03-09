@@ -20,5 +20,7 @@ public class TaskDTO {
 
     private String tag;
 
-    private TaskStatus status = TaskStatus.PAUSED; // Výchozí stav, pokud není zadán
+    private TaskStatus status = TaskStatus.PAUSED;
+
+    private Long totalTime ;
 }
