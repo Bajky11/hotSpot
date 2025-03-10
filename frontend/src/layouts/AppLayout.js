@@ -14,7 +14,7 @@ export const AppLayout = ({children}) => {
     useEffect(() => {
         switch (location.pathname) {
             case "/home":
-                dispatch(setPageLabel("AppBar"));
+                dispatch(setPageLabel("TimeIsMoney"));
                 break;
             case "/options":
                 dispatch(setPageLabel("Nastavení"));
