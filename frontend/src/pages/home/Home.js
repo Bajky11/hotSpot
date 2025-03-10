@@ -149,7 +149,7 @@ const AddNewTaskModal = ({ open, setOpen }) => {
         try {
             await createTask({
                 name: formData.name.trim(), // ✅ Ořezání bílých znaků
-                hourlyRate: 450,
+                hourlyRate: 225,
                 tag: formData.tag.trim(),
                 status: status,
                 totalTime: totalTime || 0
@@ -402,7 +402,7 @@ function TaskListItem({ task, onClick }) {
     const handleCreate = async (event) => {
         event.stopPropagation();
         await createTask({
-            name: task.name, hourlyRate: 450, tag: "work", status: "PAUSED"
+            name: task.name, hourlyRate: 225, tag: "work", status: "PAUSED"
         });
     };
 
