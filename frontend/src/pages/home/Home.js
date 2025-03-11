@@ -2,7 +2,6 @@ import {
     Box,
     Button,
     Chip,
-    Divider,
     Fab,
     FormControl,
     IconButton,
@@ -27,8 +26,8 @@ import {
     usePauseTaskMutation,
     useStartTaskMutation
 } from "../../services/api/tasks/tasksApi";
-import { Fragment, useCallback, useEffect, useRef, useState } from "react";
-import { formatDateToDDMMYYYY, formatSecondsToHHmm } from "../../common/functions/functions";
+import { useCallback, useEffect, useRef, useState} from "react";
+import {formatDateToDDMMYYYY, formatSecondsToHHmm} from "../../common/functions/functions";
 import useForm from "../../common/hooks/useForm";
 import useModal from "../../common/hooks/useModal";
 
@@ -36,59 +35,67 @@ export const Home = () => {
 
     const [timePeriod, setTimePeriod] = useState(`month`);
     const [open, setOpen] = useState(false);
-    const { data: tasks, isLoading, error } = useGetTasksQuery({ filter: timePeriod });
+    const {data: tasks, isLoading, error} = useGetTasksQuery({filter: timePeriod});
 
-    const { open: updateModalOpen, data: updateModalData, handleOpen: handleOpenUpdateModal, handleClose: handleCloseUpdateModal } = useModal();
+    const {
+        open: updateModalOpen,
+        data: updateModalData,
+        handleOpen: handleOpenUpdateModal,
+        handleClose: handleCloseUpdateModal
+    } = useModal();
 
     if (isLoading) return <p>Načítání...</p>;
     if (error) return <p>Chyba při načítání</p>;
 
     return (<Stack spacing={2}>
-        <ActiveTasks />
-        <Stack direction={"row"} spacing={2}>
+            <ActiveTasks/>
+            <Stack direction={"row"} spacing={2}>
 
-            <FormControl fullWidth>
-                <InputLabel id="demo-simple-select-label">Time period</InputLabel>
-                <Select
-                    labelId="demo-simple-select-label"
-                    value={timePeriod}
-                    onChange={(e) => setTimePeriod(e.target.value)}
-                    label="Time period"
-                    variant={"outlined"}>
-                    <MenuItem value={`week`}>Week</MenuItem>
-                    <MenuItem value={`month`}>Month</MenuItem>
-                    <MenuItem value={`year`}>Year</MenuItem>
-                    <MenuItem value={`all`}>All</MenuItem>
-                </Select>
-            </FormControl>
+                <FormControl fullWidth>
+                    <InputLabel id="demo-simple-select-label">Time period</InputLabel>
+                    <Select
+                        labelId="demo-simple-select-label"
+                        value={timePeriod}
+                        onChange={(e) => setTimePeriod(e.target.value)}
+                        label="Time period"
+                        variant={"outlined"}>
+                        <MenuItem value={`week`}>Week</MenuItem>
+                        <MenuItem value={`month`}>Month</MenuItem>
+                        <MenuItem value={`year`}>Year</MenuItem>
+                        <MenuItem value={`all`}>All</MenuItem>
+                    </Select>
+                </FormControl>
 
-            <FormControl fullWidth>
-                <InputLabel id="demo-simple-select-label">Tag</InputLabel>
-                <Select
-                    labelId="demo-simple-select-label"
-                    value={10}
-                    label="Tag"
-                    variant={"outlined"}>
-                    <MenuItem value={10}>Ten</MenuItem>
-                    <MenuItem value={20}>Twenty</MenuItem>
-                    <MenuItem value={30}>Thirty</MenuItem>
-                </Select>
-            </FormControl>
+                <FormControl fullWidth>
+                    <InputLabel id="demo-simple-select-label">Tag</InputLabel>
+                    <Select
+                        labelId="demo-simple-select-label"
+                        value={10}
+                        label="Tag"
+                        variant={"outlined"}>
+                        <MenuItem value={10}>Ten</MenuItem>
+                        <MenuItem value={20}>Twenty</MenuItem>
+                        <MenuItem value={30}>Thirty</MenuItem>
+                    </Select>
+                </FormControl>
 
 
+            </Stack>
+            <Summary timePeriod={timePeriod}/>
+
+            <Stack px={2} pt={2} spacing={4}>
+                {
+                    tasks.map((task) => {
+                        return <TaskListItem task={task} onClick={handleOpenUpdateModal}/>
+                    })
+                }
+
+
+            </Stack>
+            <FloatingButton onClick={() => setOpen(true)}/>
+            <AddNewTaskModal open={open} setOpen={setOpen}/>
+            <UpdateTaskModal open={updateModalOpen} onClose={handleCloseUpdateModal} data={updateModalData}/>
         </Stack>
-        <Summary timePeriod={timePeriod} />
-
-        <Stack px={2} pt={2} spacing={2}>
-            {tasks.map((task, index) => (<Fragment key={task.id}>
-                <TaskListItem task={task} onClick={handleOpenUpdateModal} />
-                {index < tasks.length - 1 && <Divider />}
-            </Fragment>))}
-        </Stack>
-        <FloatingButton onClick={() => setOpen(true)} />
-        <AddNewTaskModal open={open} setOpen={setOpen} />
-        <UpdateTaskModal open={updateModalOpen} onClose={handleCloseUpdateModal} data={updateModalData}/>
-    </Stack>
 
     )
 }
@@ -101,7 +108,7 @@ export const Home = () => {
 }
  */
 
-const UpdateTaskModal = ({ open, onClose, data }) => {
+const UpdateTaskModal = ({open, onClose, data}) => {
     const [deleteTask] = useDeleteTaskMutation();
 
     const handleDeleteTask = () => {
@@ -111,20 +118,20 @@ const UpdateTaskModal = ({ open, onClose, data }) => {
 
     return (
         <ReusableModal open={open}
-            onClose={onClose}
-            title="Aktualizace záznamu"
+                       onClose={onClose}
+                       title="Aktualizace záznamu"
         >
             <Stack spacing={2}>
-               <Button variant="contained" onClick={handleDeleteTask}>Odstranit</Button>
+                <Button variant="contained" onClick={handleDeleteTask}>Odstranit</Button>
             </Stack>
         </ReusableModal>
     )
 }
 
-const AddNewTaskModal = ({ open, setOpen }) => {
+const AddNewTaskModal = ({open, setOpen}) => {
     const [createTask] = useCreateTaskMutation();
 
-    const { formData, handleChange, resetForm } = useForm({
+    const {formData, handleChange, resetForm} = useForm({
         name: "",
         tag: "work",
         hours: "",
@@ -142,7 +149,7 @@ const AddNewTaskModal = ({ open, setOpen }) => {
     const handleCreateTask = async (event, formData, status) => {
         event.preventDefault(); // ✅ Zabráníme přesměrování formuláře
 
-        console.log("📝 Odesílám úkol:", { ...formData, status });
+        console.log("📝 Odesílám úkol:", {...formData, status});
 
         const totalTime = formData.hours * 3600 + formData.minutes * 60
 
@@ -164,38 +171,38 @@ const AddNewTaskModal = ({ open, setOpen }) => {
 
     return (
         <ReusableModal open={open}
-            onClose={() => setOpen(false)}
-            title="Nový záznam"
+                       onClose={() => setOpen(false)}
+                       title="Nový záznam"
         >
             <Typography color="gray">Základní údaje</Typography>
             <Stack spacing={2}>
                 <TextField label="Název"
-                    name={"name"}
-                    required={true}
-                    fullWidth
-                    value={formData.name}
-                    onChange={handleChange}
+                           name={"name"}
+                           required={true}
+                           fullWidth
+                           value={formData.name}
+                           onChange={handleChange}
                 />
                 <TextField label="Tag"
-                    name={"tag"}
-                    required={true}
-                    fullWidth
-                    value={formData.tag}
-                    onChange={handleChange}
+                           name={"tag"}
+                           required={true}
+                           fullWidth
+                           value={formData.tag}
+                           onChange={handleChange}
                 />
                 <Typography color="gray">Odpracováno</Typography>
                 <Stack direction={"row"} spacing={2}>
                     <TextField label="Hodiny"
-                        name={"hours"}
-                        fullWidth
-                        value={formData.hours}
-                        onChange={handleChange}
+                               name={"hours"}
+                               fullWidth
+                               value={formData.hours}
+                               onChange={handleChange}
                     />
                     <TextField label="Minuty"
-                        name={"minutes"}
-                        fullWidth
-                        value={formData.minutes}
-                        onChange={handleChange}
+                               name={"minutes"}
+                               fullWidth
+                               value={formData.minutes}
+                               onChange={handleChange}
                     />
                 </Stack>
                 <Stack direction={"row"} spacing={2} justifyContent={"flex-end"}>
@@ -207,7 +214,7 @@ const AddNewTaskModal = ({ open, setOpen }) => {
     )
 }
 
-const ReusableModal = ({ open, onClose, title, children }) => {
+const ReusableModal = ({open, onClose, title, children}) => {
     return (
         <Modal open={open} onClose={onClose}>
             <Box
@@ -231,7 +238,7 @@ const ReusableModal = ({ open, onClose, title, children }) => {
                             {title}
                         </Typography>
                         <IconButton onClick={onClose}>
-                            <Close />
+                            <Close/>
                         </IconButton>
                     </Stack>
                     {children}
@@ -241,18 +248,18 @@ const ReusableModal = ({ open, onClose, title, children }) => {
     );
 };
 
-const FloatingButton = ({ onClick }) => {
+const FloatingButton = ({onClick}) => {
     return (
         <Box
             sx={{
                 position: "fixed",
-                bottom: 80,
+                bottom: 100,
                 right: 40,
                 zIndex: 1000,
             }}
         >
-            <Fab color="#D7D7D7" aria-label="add" onClick={onClick}>
-                <Add />
+            <Fab aria-label="add" onClick={onClick} sx={{backgroundColor: "orange"}}>
+                <Add/>
             </Fab>
         </Box>
     );
@@ -262,7 +269,7 @@ export default FloatingButton;
 
 function ActiveTasks() {
 
-    const { data: tasks, isLoading, error } = useGetActiveTaskQuery();
+    const {data: tasks, isLoading, error} = useGetActiveTaskQuery();
 
     if (isLoading) return <p>Načítání...</p>;
     if (error) return null;
@@ -270,18 +277,18 @@ function ActiveTasks() {
 
     return (<Stack spacing={2}>
 
-        {
-            tasks.map((task, index) => {
-                return <ActiveTaskItem task={task} key={index} />
+            {
+                tasks.map((task, index) => {
+                    return <ActiveTaskItem task={task} key={index}/>
 
-            })
-        }
-    </Stack>
+                })
+            }
+        </Stack>
 
     )
 }
 
-function ActiveTaskItem({ task }) {
+function ActiveTaskItem({task}) {
     const [elapsedTime, setElapsedTime] = useState(task.totalTime || 0);
     const [startTask] = useStartTaskMutation();
     const [pauseTask] = usePauseTaskMutation();
@@ -339,49 +346,49 @@ function ActiveTaskItem({ task }) {
 
     return (
         <Stack bgcolor={`rgba(${resolveStatusColor(task.status)}, 0.1)`}
-            border={`1px solid rgba(${resolveStatusColor(task.status)}, 0.5)`}
-            borderRadius={4}
-            spacing={1}
-            padding={1.5}>
+               border={`1px solid rgba(${resolveStatusColor(task.status)}, 0.5)`}
+               borderRadius={4}
+               spacing={1}
+               padding={1.5}>
             <Stack direction={`row`} spacing={2} alignItems={"center"}>
                 <Typography fontSize={20}>{task.name}</Typography>
-                <Chip label={task.tag} sx={{ height: 30, color: "gray" }} />
+                <Chip label={task.tag} sx={{height: 30, color: "gray"}}/>
             </Stack>
             <Stack direction={"row"} justifyContent={"space-between"} alignItems={"center"}>
                 <Typography fontSize={24}
-                    fontWeight={"bold"}>{formatSecondsToHHmm(elapsedTime, true)}</Typography>
+                            fontWeight={"bold"}>{formatSecondsToHHmm(elapsedTime, true)}</Typography>
                 <Stack direction={"row"} spacing={2}>
-                    <TaskActionItem Icon={<StopOutlined />} bgColor={`#B84848`}
-                        onClick={() => completeTask(task.id)} />
-                    <TaskActionItem Icon={<PlayArrowOutlined />} bgColor={`#0A9300`}
-                        onClick={() => startTask(task.id)} />
-                    <TaskActionItem Icon={<PauseOutlined />} bgColor={`#D07027`}
-                        onClick={() => pauseTask(task.id)} />
+                    <TaskActionItem Icon={<StopOutlined/>} bgColor={`#B84848`}
+                                    onClick={() => completeTask(task.id)}/>
+                    <TaskActionItem Icon={<PlayArrowOutlined/>} bgColor={`#0A9300`}
+                                    onClick={() => startTask(task.id)}/>
+                    <TaskActionItem Icon={<PauseOutlined/>} bgColor={`#D07027`}
+                                    onClick={() => pauseTask(task.id)}/>
                 </Stack>
             </Stack>
         </Stack>
     )
 }
 
-function TaskActionItem({ Icon, bgColor, border, onClick }) {
+function TaskActionItem({Icon, bgColor, border, onClick}) {
     return (<Stack bgcolor={bgColor} borderRadius={2} border={border || null} onClick={onClick}>
         {Icon}
     </Stack>)
 }
 
-function Summary({ timePeriod }) {
+function Summary({timePeriod}) {
 
-    const { data: summary, summaryIsLoading, summaryError } = useGetTaskSummaryQuery({ filter: timePeriod });
+    const {data: summary, summaryIsLoading, summaryError} = useGetTaskSummaryQuery({filter: timePeriod});
 
     if (summaryIsLoading) return <p>Načítání...</p>;
     if (summaryError) return <p>Chyba při načítání</p>;
 
     return (<Stack bgcolor={`#F6F6F6`} borderRadius={4} border={"1px solid rgba(215, 215, 215, 0.5)"} p={2}
-        direction={"row"}
-        justifyContent={"space-between"}>
+                   direction={"row"}
+                   justifyContent={"space-between"}>
         <Stack alignItems={"center"}>
             <Typography>Výdělek</Typography>
-            <Typography fontWeight={"bold"}>{summary?.totalEarnings + " Kč"}</Typography>
+            <Typography fontWeight={"bold"} color={"orange"}>{summary?.totalEarnings + " Kč"}</Typography>
         </Stack>
         <Stack alignItems={"center"}>
             <Typography>Hodiny</Typography>
@@ -394,7 +401,7 @@ function Summary({ timePeriod }) {
     </Stack>)
 }
 
-function TaskListItem({ task, onClick }) {
+function TaskListItem({task, onClick}) {
 
     const [createTask] = useCreateTaskMutation();
 
@@ -411,12 +418,12 @@ function TaskListItem({ task, onClick }) {
             <Typography fontSize={18}>{task.name}</Typography>
             <Stack direction={"row"} alignItems={"center"} justifyContent={"space-between"}>
                 <Typography fontSize={14} color={"gray"}>{formatDateToDDMMYYYY(task.createdAt)}</Typography>
-                <Chip label={task.tag} sx={{ height: 30, color: "gray", border: "1px solid rgba(215, 215, 215, 0.5)" }}
-                    variant="outlined" />
+                <Chip label={task.tag} sx={{height: 25, color: "gray", border: "1px solid rgba(215, 215, 215, 0.5)"}}
+                      variant="outlined"/>
                 <Stack direction={"row"} spacing={2} alignItems={"center"}>
                     <Typography fontSize={14} color={"gray"}>{formatSecondsToHHmm(task.totalTime)}</Typography>
                     <TaskActionItem
-                        Icon={<PlayArrowOutlined />}
+                        Icon={<PlayArrowOutlined/>}
                         bgColor={`#F6F6F6`}
                         border={"1px solid rgba(215, 215, 215, 0.5)"}
                         onClick={handleCreate}
