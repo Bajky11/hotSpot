@@ -1,0 +1,59 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="5652EE4E-2F05-021C-86EF-B31629D9BD26" name="restriction">
+<createdBy>lukasbajer</createdBy>
+<createdTime>2025-03-12 10:07:27 UTC</createdTime>
+<generatorID>30D7E3D6-E347-B48B-102B-9825E6ABAC29</generatorID>
+<ownerDesignName>database_model</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id" id="BB254D38-4EC2-5CAD-51CA-38C99A40E755">
+<createdBy>lukasbajer</createdBy>
+<createdTime>2025-03-12 10:07:27 UTC</createdTime>
+<generatorID>809E251A-8FA0-5A04-295B-636E42EA8869</generatorID>
+<ownerDesignName>database_model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="name" id="DD404C93-10D0-D296-8975-DF18914185EB">
+<createdBy>lukasbajer</createdBy>
+<createdTime>2025-03-12 10:07:27 UTC</createdTime>
+<generatorID>174370AC-0446-8400-8424-709BBF3E9638</generatorID>
+<ownerDesignName>database_model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="illustration_url" id="F735AEFF-CCC9-1FA8-F213-16ACB948C2D3">
+<createdBy>lukasbajer</createdBy>
+<createdTime>2025-03-12 10:07:27 UTC</createdTime>
+<generatorID>30B6EE7C-7B48-D5E7-E299-758371B645E3</generatorID>
+<ownerDesignName>database_model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="3A87AEC3-B5CB-515A-67C4-524D5525AD3F" name="restriction_PK">
+<createdBy>lukasbajer</createdBy>
+<createdTime>2025-03-12 10:07:27 UTC</createdTime>
+<generatorID>2BFC62A2-4473-57E3-7438-20B5D7426D14</generatorID>
+<ownerDesignName>database_model</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="BB254D38-4EC2-5CAD-51CA-38C99A40E755"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

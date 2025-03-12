@@ -1,0 +1,228 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="EAA4A36F-7738-1758-94A4-D6F8F4962F5C" name="event">
+<createdBy>lukasbajer</createdBy>
+<createdTime>2025-03-12 10:07:27 UTC</createdTime>
+<generatorID>DF7C3482-6064-BB71-B429-ED78017D4DEF</generatorID>
+<ownerDesignName>database_model</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id" id="2DB0FD3F-74AC-8264-C92A-199BF9706D87">
+<createdBy>lukasbajer</createdBy>
+<createdTime>2025-03-12 10:07:27 UTC</createdTime>
+<generatorID>27273E3D-AAEF-7443-689F-B8C2B4719688</generatorID>
+<ownerDesignName>database_model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="name" id="436D2C07-BCB0-562B-2582-F26202F63EFA">
+<createdBy>lukasbajer</createdBy>
+<createdTime>2025-03-12 10:07:27 UTC</createdTime>
+<generatorID>F76EB5B9-A698-CF80-20CB-1F125C5C2BFA</generatorID>
+<ownerDesignName>database_model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>255</dataTypeSize>
+<ownDataTypeParameters>255,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="start_time" id="1E48543C-D0F8-4A03-1063-56C4427CDBE0">
+<createdBy>lukasbajer</createdBy>
+<createdTime>2025-03-12 10:07:27 UTC</createdTime>
+<generatorID>9A37F646-0E67-18D0-20A8-25CC95317694</generatorID>
+<ownerDesignName>database_model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT046</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="end_time" id="5196730D-30C9-6A03-780A-DAC0028CC13B">
+<createdBy>lukasbajer</createdBy>
+<createdTime>2025-03-12 10:07:27 UTC</createdTime>
+<generatorID>37601F53-189A-EADF-9C30-0828D922447C</generatorID>
+<ownerDesignName>database_model</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT047</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="description" id="21B8DF08-DD9F-6433-D313-6EA73CC441C1">
+<createdBy>lukasbajer</createdBy>
+<createdTime>2025-03-12 10:07:27 UTC</createdTime>
+<generatorID>A3E5071A-00F1-01F3-A716-170A3E0361FC</generatorID>
+<ownerDesignName>database_model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>500</dataTypeSize>
+<ownDataTypeParameters>500,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="created_at" id="6318CC14-DAF0-6B74-5A3E-3F9F3F3E2A2A">
+<createdBy>lukasbajer</createdBy>
+<createdTime>2025-03-12 10:07:27 UTC</createdTime>
+<generatorID>5B88C75C-E60A-940A-3069-4C3AEA6AAA08</generatorID>
+<ownerDesignName>database_model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT046</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="cover_url" id="ACB9A5C1-FF23-45F2-D0FC-C3AB8BE26E14">
+<createdBy>lukasbajer</createdBy>
+<createdTime>2025-03-12 10:07:27 UTC</createdTime>
+<generatorID>78978EB9-DCA7-A490-7C6C-A42B159B301B</generatorID>
+<ownerDesignName>database_model</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="price" id="5D0B7411-3596-B27B-7923-C07CF207ED75">
+<createdBy>lukasbajer</createdBy>
+<createdTime>2025-03-12 10:07:27 UTC</createdTime>
+<generatorID>75F62C75-34B8-DE14-410B-07C49A98DE4C</generatorID>
+<ownerDesignName>database_model</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="location_id" id="A25E3EF3-461A-4985-42C8-6CB57594CF88">
+<createdBy>lukasbajer</createdBy>
+<createdTime>2025-03-12 10:07:27 UTC</createdTime>
+<generatorID>56A16AC9-290B-ABF7-D4EB-6B38C8BB398F</generatorID>
+<ownerDesignName>database_model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="65A3CF5F-98B0-6BC5-93F6-730A10F8454D" referredColumn="743032B9-86FB-9B42-DA97-E0EC6A8679C7"/>
+</associations>
+</Column>
+<Column name="event_state_id" id="CDB37ACD-591F-86E7-ABC6-E89C571D08C0">
+<createdBy>lukasbajer</createdBy>
+<createdTime>2025-03-12 10:07:27 UTC</createdTime>
+<generatorID>E331DA45-790E-FE08-3D1D-07741AAFF991</generatorID>
+<ownerDesignName>database_model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="26D244AC-14AB-EE5A-A3F3-5E4153C86754" referredColumn="EB92D424-78E4-5CB2-C5F4-3940F46A602B"/>
+</associations>
+</Column>
+<Column name="currency_id" id="6C51E65F-9FED-AE8B-5841-58EBB8F50EA7">
+<createdBy>lukasbajer</createdBy>
+<createdTime>2025-03-12 10:07:27 UTC</createdTime>
+<generatorID>0C9670C7-C51A-9DD0-2416-B12310E8584D</generatorID>
+<ownerDesignName>database_model</ownerDesignName>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="B2A3AC64-85F7-C167-83A3-7FF8D212FA6C" referredColumn="EDB86369-F29A-9888-1909-A139C068E2C4"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="6A89CEF0-52E4-5160-4B3A-CB129EF4061B" name="event_PK">
+<createdBy>lukasbajer</createdBy>
+<createdTime>2025-03-12 10:07:27 UTC</createdTime>
+<generatorID>CC74240D-23E8-AF71-E78F-02D02887F654</generatorID>
+<ownerDesignName>database_model</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="2DB0FD3F-74AC-8264-C92A-199BF9706D87"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="4063E81B-EA4D-4C45-F2A9-FF21EE2B3E0E" name="event__IDX">
+<createdBy>lukasbajer</createdBy>
+<createdTime>2025-03-12 10:07:27 UTC</createdTime>
+<ownerDesignName>database_model</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<relationGeneratorID>13AF26F2-4F9D-BBDC-85DC-CEE1868F2B7A</relationGeneratorID>
+<indexColumnUsage>
+<colUsage columnID="6C51E65F-9FED-AE8B-5841-58EBB8F50EA7"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="BB919315-425D-562B-AF30-9D80AAA6CD37" name="event__IDXv1">
+<createdBy>lukasbajer</createdBy>
+<createdTime>2025-03-12 10:07:27 UTC</createdTime>
+<ownerDesignName>database_model</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<relationGeneratorID>67D1A2A6-249E-FCB9-7CE2-0D0DEEA4B43D</relationGeneratorID>
+<indexColumnUsage>
+<colUsage columnID="A25E3EF3-461A-4985-42C8-6CB57594CF88"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="B69F6EEF-EF94-CF55-65CB-4F4BDE144FD7" name="event__IDXv2">
+<createdBy>lukasbajer</createdBy>
+<createdTime>2025-03-12 10:07:27 UTC</createdTime>
+<ownerDesignName>database_model</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<relationGeneratorID>724B2D34-C050-215B-9E42-E7633503BFCD</relationGeneratorID>
+<indexColumnUsage>
+<colUsage columnID="CDB37ACD-591F-86E7-ABC6-E89C571D08C0"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="8327F978-7685-309A-EA1D-525FDF5B3EE6" name="event_currency_FK">
+<createdBy>lukasbajer</createdBy>
+<createdTime>2025-03-12 10:07:27 UTC</createdTime>
+<generatorID>13AF26F2-4F9D-BBDC-85DC-CEE1868F2B7A</generatorID>
+<ownerDesignName>database_model</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="6C51E65F-9FED-AE8B-5841-58EBB8F50EA7"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="5B8D5C93-9FCC-E6B0-3509-D0B09270B634" name="event_location_FK">
+<createdBy>lukasbajer</createdBy>
+<createdTime>2025-03-12 10:07:27 UTC</createdTime>
+<generatorID>67D1A2A6-249E-FCB9-7CE2-0D0DEEA4B43D</generatorID>
+<ownerDesignName>database_model</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="A25E3EF3-461A-4985-42C8-6CB57594CF88"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="2B70FA2F-A087-13BA-15A7-1C0EAEE98B52" name="event_event_state_FK">
+<createdBy>lukasbajer</createdBy>
+<createdTime>2025-03-12 10:07:27 UTC</createdTime>
+<generatorID>724B2D34-C050-215B-9E42-E7633503BFCD</generatorID>
+<ownerDesignName>database_model</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="CDB37ACD-591F-86E7-ABC6-E89C571D08C0"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

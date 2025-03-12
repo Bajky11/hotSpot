@@ -1,0 +1,75 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="DA17889F-93B7-2BE2-2701-924B0264E0D8" name="account_tags">
+<createdBy>lukasbajer</createdBy>
+<createdTime>2025-03-12 10:07:27 UTC</createdTime>
+<ownerDesignName>database_model</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="event_tag_id" id="F27E8621-138D-64F8-5D25-55B535FAA30E">
+<createdBy>lukasbajer</createdBy>
+<createdTime>2025-03-12 10:07:27 UTC</createdTime>
+<ownerDesignName>database_model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="857FE47A-8BE0-377E-71A0-1126A2A466E7" referredColumn="FFB176FB-BFC6-D028-DC6F-FF8021A7C8D7"/>
+</associations>
+</Column>
+<Column name="account_id" id="C419E111-1DB5-9BB6-CC5E-3142E126C170">
+<createdBy>lukasbajer</createdBy>
+<createdTime>2025-03-12 10:07:27 UTC</createdTime>
+<ownerDesignName>database_model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="4962E7B7-6A1B-D965-EA71-E7817E6A4744" referredColumn="E0945C97-177C-C7AD-2050-DA6B8158C0EF"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="0F8B0E64-688D-372D-655B-6A5A8D0C802E" name="account_tags_PK">
+<createdBy>lukasbajer</createdBy>
+<createdTime>2025-03-12 10:07:27 UTC</createdTime>
+<ownerDesignName>database_model</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="F27E8621-138D-64F8-5D25-55B535FAA30E"/>
+<colUsage columnID="C419E111-1DB5-9BB6-CC5E-3142E126C170"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="8611FFE5-A97D-3A2E-3C36-878FB938AF26" name="account_tags_event_tag_FK">
+<createdBy>lukasbajer</createdBy>
+<createdTime>2025-03-12 10:07:27 UTC</createdTime>
+<generatorID>5DC9105E-FA49-F07F-11E5-AAEF39E9480C</generatorID>
+<ownerDesignName>database_model</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="F27E8621-138D-64F8-5D25-55B535FAA30E"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="AA221204-D1C4-5586-224D-DC09435B01A8" name="account_tags_account_FK">
+<createdBy>lukasbajer</createdBy>
+<createdTime>2025-03-12 10:07:27 UTC</createdTime>
+<generatorID>5DC9105E-FA49-F07F-11E5-AAEF39E9480C</generatorID>
+<ownerDesignName>database_model</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="C419E111-1DB5-9BB6-CC5E-3142E126C170"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

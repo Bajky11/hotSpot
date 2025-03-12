@@ -1,0 +1,75 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="00D98D12-6725-09FA-97CE-A1ABCA962121" name="event_restrictions">
+<createdBy>lukasbajer</createdBy>
+<createdTime>2025-03-12 10:07:27 UTC</createdTime>
+<ownerDesignName>database_model</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="restriction_id" id="88F34C5A-CFF4-A923-EA29-31965FD9BCBF">
+<createdBy>lukasbajer</createdBy>
+<createdTime>2025-03-12 10:07:27 UTC</createdTime>
+<ownerDesignName>database_model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="157393ED-7E31-F0B8-3365-0783C9431197" referredColumn="BB254D38-4EC2-5CAD-51CA-38C99A40E755"/>
+</associations>
+</Column>
+<Column name="event_id" id="8CB699D1-85D0-47A7-E073-7D325CFB7076">
+<createdBy>lukasbajer</createdBy>
+<createdTime>2025-03-12 10:07:27 UTC</createdTime>
+<ownerDesignName>database_model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="11D0D2F7-0B26-4038-6BFA-00FD5C4DA371" referredColumn="2DB0FD3F-74AC-8264-C92A-199BF9706D87"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="D515E801-CFC0-E33F-B7AB-5CF914FB0DAE" name="event_restrictions_PK">
+<createdBy>lukasbajer</createdBy>
+<createdTime>2025-03-12 10:07:27 UTC</createdTime>
+<ownerDesignName>database_model</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="88F34C5A-CFF4-A923-EA29-31965FD9BCBF"/>
+<colUsage columnID="8CB699D1-85D0-47A7-E073-7D325CFB7076"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="12FA191A-0AFE-F9ED-0ED1-D03021DC4067" name="event_restrictions_restriction_FK">
+<createdBy>lukasbajer</createdBy>
+<createdTime>2025-03-12 10:07:27 UTC</createdTime>
+<generatorID>4040981D-D498-24C4-2F49-D0C9F0C86888</generatorID>
+<ownerDesignName>database_model</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="88F34C5A-CFF4-A923-EA29-31965FD9BCBF"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="00358589-3A0F-2469-C49E-5CFC280B7564" name="event_restrictions_event_FK">
+<createdBy>lukasbajer</createdBy>
+<createdTime>2025-03-12 10:07:27 UTC</createdTime>
+<generatorID>4040981D-D498-24C4-2F49-D0C9F0C86888</generatorID>
+<ownerDesignName>database_model</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="8CB699D1-85D0-47A7-E073-7D325CFB7076"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

@@ -1,0 +1,156 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Diagram class="oracle.dbtools.crest.swingui.logical.DPVLogical" name="Logical" id="C4810E70-97AD-C5C7-E921-690FBB590B24">
+<createdBy>lukasbajer</createdBy>
+<modifiedBy>lukasbajer</modifiedBy>
+<createdTime>2025-03-11 15:07:40 UTC</createdTime>
+<autoRoute>false</autoRoute>
+<boxInbox>true</boxInbox>
+<showLegend>false</showLegend>
+<showLabels>false</showLabels>
+<showRelAttributes>false</showRelAttributes>
+<gridEnabled>false</gridEnabled>
+<showGrid>false</showGrid>
+<diagramColor>-1</diagramColor>
+<display>false</display>
+<notation>1</notation>
+<objectViews>
+<OView class="oracle.dbtools.crest.swingui.TVNote" oid="093264FB-670F-4959-CCD2-606D0A6FDD21" otype="Note" vid="0BE7C617-37F6-BB4C-ACBD-B795012A4B2B">
+<hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
+<bounds x="699" y="168" width="95" height="40"/>
+<comment>Company name a zobrazit</comment>
+</OView>
+<OView class="oracle.dbtools.crest.swingui.logical.TVEntity" oid="30D7E3D6-E347-B48B-102B-9825E6ABAC29" otype="Entity" vid="07D7BF7D-E14B-1FEB-CD20-D97945F02300">
+<hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
+<bounds x="730" y="562" width="170" height="110"/>
+</OView>
+<OView class="oracle.dbtools.crest.swingui.TVNote" oid="32F33563-A945-EF95-9CB9-CD2FC828260B" otype="Note" vid="56A03A8B-F2DD-1DF0-A201-39BC309F627B">
+<hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
+<bounds x="395" y="747" width="413" height="52"/>
+<comment>✅ Cizí klíč location_id v event → location(id)
+✅ Index geom v location pro rychlé prostorové dotazy
+✅ Použití PostGIS GEOGRAPHY(Point, 4326) pro efektivní práci s GPS souřadnicemi</comment>
+</OView>
+<OView class="oracle.dbtools.crest.swingui.logical.TVEntity" oid="3B5BE7A6-5D63-2743-F219-4CEFE7026FFA" otype="Entity" vid="651043AF-49F6-EF13-FBD0-FA05652284E8">
+<hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
+<bounds x="817" y="270" width="170" height="110"/>
+</OView>
+<OView class="oracle.dbtools.crest.swingui.logical.TVEntity" oid="4A3DBCDE-F597-7F49-86D0-FCC4F6605A02" otype="Entity" vid="45469750-4CBC-6C86-0C44-6DFB9856FDFE">
+<hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
+<bounds x="208" y="321" width="170" height="155"/>
+</OView>
+<OView class="oracle.dbtools.crest.swingui.logical.TVEntity" oid="5D0F96F8-2D54-D2BA-C5C4-E6C3854B8E4D" otype="Entity" vid="5A209025-6001-F162-0B7B-2230F9939D5A">
+<hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
+<bounds x="479" y="60" width="170" height="207"/>
+</OView>
+<OView class="oracle.dbtools.crest.swingui.logical.TVEntity" oid="945810EC-7F96-D9B2-BA25-B7A13ABE20E1" otype="Entity" vid="9A619F68-2094-2F4D-D768-DA5F77320050">
+<hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
+<bounds x="450" y="564" width="170" height="110"/>
+</OView>
+<OView class="oracle.dbtools.crest.swingui.TVNote" oid="9EE2D604-5501-F604-74FA-186646E995D0" otype="Note" vid="5192D377-9008-AC92-23BF-53F64889A885">
+<hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
+<bounds x="391" y="815" width="478" height="75"/>
+<comment>✅ Zavoláme Google Maps API, které vrátí validovanou adresu, město, stát, zemi a souřadnice.
+✅ Podíváme se, zda adresa už existuje v location.
+✅ Pokud ano, použijeme její id do event.
+✅ Pokud ne, vytvoříme nový záznam v location a poté událost v event.</comment>
+</OView>
+<OView class="oracle.dbtools.crest.swingui.logical.TVEntity" oid="AE3A93AF-1B62-FC9D-9758-BA8C19FC889B" otype="Entity" vid="9DF17614-E7AD-5E54-73AB-CE430CAAA655">
+<hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
+<bounds x="219" y="113" width="170" height="110"/>
+</OView>
+<OView class="oracle.dbtools.crest.swingui.logical.TVEntity" oid="CF7018FD-6B69-3BFE-836B-710BB133E44F" otype="Entity" vid="A82DF938-B57E-5C93-5CFF-AC89BBAC1F11">
+<hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
+<bounds x="219" y="564" width="170" height="110"/>
+</OView>
+<OView class="oracle.dbtools.crest.swingui.logical.TVEntity" oid="DF7C3482-6064-BB71-B429-ED78017D4DEF" otype="Entity" vid="2F396327-BA05-1957-01AA-AB9795DCA906">
+<hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
+<bounds x="457" y="359" width="170" height="130"/>
+</OView>
+</objectViews>
+<connectors>
+<Connector class="oracle.dbtools.crest.swingui.logical.TVRelation" oid="007B1FFA-32E0-FDA7-B106-6C392E26D3B7" otype="Relation" vid_source="5A209025-6001-F162-0B7B-2230F9939D5A" vid_target="2F396327-BA05-1957-01AA-AB9795DCA906">
+<hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
+<backgroundColor>-16777216</backgroundColor>
+<lineWidth>1</lineWidth>
+<points>
+<point x="538" y="267"/>
+<point x="538" y="359"/>
+</points>
+</Connector>
+<Connector class="oracle.dbtools.crest.swingui.logical.TVRelation" oid="13AF26F2-4F9D-BBDC-85DC-CEE1868F2B7A" otype="Relation" vid_source="9A619F68-2094-2F4D-D768-DA5F77320050" vid_target="2F396327-BA05-1957-01AA-AB9795DCA906">
+<hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
+<backgroundColor>-16777216</backgroundColor>
+<lineWidth>1</lineWidth>
+<points>
+<point x="538" y="564"/>
+<point x="538" y="489"/>
+</points>
+</Connector>
+<Connector class="oracle.dbtools.crest.swingui.logical.TVRelation" oid="4040981D-D498-24C4-2F49-D0C9F0C86888" otype="Relation" vid_source="07D7BF7D-E14B-1FEB-CD20-D97945F02300" vid_target="2F396327-BA05-1957-01AA-AB9795DCA906">
+<hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
+<backgroundColor>-16777216</backgroundColor>
+<lineWidth>1</lineWidth>
+<points>
+<point x="737" y="562"/>
+<point x="612" y="489"/>
+</points>
+</Connector>
+<Connector class="oracle.dbtools.crest.swingui.logical.TVRelation" oid="5CD05280-AD4C-906D-E0C6-C15123129FD8" otype="Relation" vid_source="651043AF-49F6-EF13-FBD0-FA05652284E8" vid_target="2F396327-BA05-1957-01AA-AB9795DCA906">
+<hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
+<backgroundColor>-16777216</backgroundColor>
+<lineWidth>1</lineWidth>
+<points>
+<point x="817" y="369"/>
+<point x="627" y="369"/>
+</points>
+</Connector>
+<Connector class="oracle.dbtools.crest.swingui.logical.TVRelation" oid="5DC9105E-FA49-F07F-11E5-AAEF39E9480C" otype="Relation" vid_source="651043AF-49F6-EF13-FBD0-FA05652284E8" vid_target="5A209025-6001-F162-0B7B-2230F9939D5A">
+<hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
+<backgroundColor>-16777216</backgroundColor>
+<lineWidth>1</lineWidth>
+<points>
+<point x="817" y="284"/>
+<point x="649" y="204"/>
+</points>
+</Connector>
+<Connector class="oracle.dbtools.crest.swingui.logical.TVRelation" oid="67D1A2A6-249E-FCB9-7CE2-0D0DEEA4B43D" otype="Relation" vid_source="2F396327-BA05-1957-01AA-AB9795DCA906" vid_target="45469750-4CBC-6C86-0C44-6DFB9856FDFE">
+<hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
+<backgroundColor>-16777216</backgroundColor>
+<lineWidth>1</lineWidth>
+<points>
+<point x="457" y="402"/>
+<point x="378" y="402"/>
+</points>
+</Connector>
+<Connector class="oracle.dbtools.crest.swingui.logical.TVRelation" oid="724B2D34-C050-215B-9E42-E7633503BFCD" otype="Relation" vid_source="A82DF938-B57E-5C93-5CFF-AC89BBAC1F11" vid_target="2F396327-BA05-1957-01AA-AB9795DCA906">
+<hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
+<backgroundColor>-16777216</backgroundColor>
+<lineWidth>1</lineWidth>
+<points>
+<point x="371" y="564"/>
+<point x="462" y="489"/>
+</points>
+</Connector>
+<Connector class="oracle.dbtools.crest.swingui.logical.TVRelation" oid="A0FA8B24-410C-AA67-C699-12D35760E2CE" otype="Relation" vid_source="9DF17614-E7AD-5E54-73AB-CE430CAAA655" vid_target="5A209025-6001-F162-0B7B-2230F9939D5A">
+<hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
+<backgroundColor>-16777216</backgroundColor>
+<lineWidth>1</lineWidth>
+<points>
+<point x="389" y="183"/>
+<point x="479" y="183"/>
+</points>
+</Connector>
+<Connector class="oracle.dbtools.crest.swingui.logical.TVRelation" oid="F62BF686-CC58-AC7D-D6DE-99E061E4C293" otype="Relation" vid_source="5A209025-6001-F162-0B7B-2230F9939D5A" vid_target="5A209025-6001-F162-0B7B-2230F9939D5A">
+<hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
+<backgroundColor>-16777216</backgroundColor>
+<lineWidth>1</lineWidth>
+<points>
+<point x="604" y="60"/>
+<point x="604" y="5"/>
+<point x="703" y="5"/>
+<point x="703" y="108"/>
+<point x="649" y="108"/>
+</points>
+</Connector>
+</connectors>
+</Diagram>

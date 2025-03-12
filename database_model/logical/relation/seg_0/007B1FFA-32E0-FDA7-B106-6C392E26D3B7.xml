@@ -1,0 +1,48 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="accounts_events" directorySegmentName="seg_0" id="007B1FFA-32E0-FDA7-B106-6C392E26D3B7">
+<createdBy>lukasbajer</createdBy>
+<createdTime>2025-03-11 20:04:05 UTC</createdTime>
+<ownerDesignName>database_model</ownerDesignName>
+<engineerTo>
+<item key="1BA91464-C149-FA61-B278-7C189D87AC54" value="true"/>
+</engineerTo>
+<identifying>false</identifying>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>*</sourceCardinality>
+<sourceEntity>5D0F96F8-2D54-D2BA-C5C4-E6C3854B8E4D</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>DF7C3482-6064-BB71-B429-ED78017D4DEF</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<attribute name="favorite" id="2A5537D2-4C92-8D80-A8BF-471FBE01A65E">
+<createdBy>lukasbajer</createdBy>
+<createdTime>2025-03-12 10:05:45 UTC</createdTime>
+<ownerDesignName>database_model</ownerDesignName>
+<engineerTo>
+<item key="1BA91464-C149-FA61-B278-7C189D87AC54" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT006</logicalDatatype>
+<dataTypeSize>1</dataTypeSize>
+<ownDataTypeParameters>1,,</ownDataTypeParameters>
+</attribute>
+<attribute name="owned" id="2A7E8A80-6108-4C88-881B-D85DA28F1FB3">
+<createdBy>lukasbajer</createdBy>
+<createdTime>2025-03-12 10:06:34 UTC</createdTime>
+<ownerDesignName>database_model</ownerDesignName>
+<engineerTo>
+<item key="1BA91464-C149-FA61-B278-7C189D87AC54" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT006</logicalDatatype>
+<dataTypeSize>1</dataTypeSize>
+<ownDataTypeParameters>1,,</ownDataTypeParameters>
+</attribute>
+</attributes>
+</Relation>

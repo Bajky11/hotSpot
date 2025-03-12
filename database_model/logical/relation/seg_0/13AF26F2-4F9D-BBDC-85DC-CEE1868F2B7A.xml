@@ -1,0 +1,19 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="event_currency" directorySegmentName="seg_0" id="13AF26F2-4F9D-BBDC-85DC-CEE1868F2B7A">
+<createdBy>lukasbajer</createdBy>
+<createdTime>2025-03-12 09:42:35 UTC</createdTime>
+<ownerDesignName>database_model</ownerDesignName>
+<engineerTo>
+<item key="1BA91464-C149-FA61-B278-7C189D87AC54" value="true"/>
+</engineerTo>
+<sourcePk>64E3DD57-EF0D-DBA7-C28F-139350239027</sourcePk>
+<identifying>false</identifying>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>945810EC-7F96-D9B2-BA25-B7A13ABE20E1</sourceEntity>
+<targetCardinalityString>1</targetCardinalityString>
+<targetEntity>DF7C3482-6064-BB71-B429-ED78017D4DEF</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>

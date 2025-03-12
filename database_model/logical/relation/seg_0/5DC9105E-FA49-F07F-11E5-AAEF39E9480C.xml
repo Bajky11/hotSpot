@@ -1,0 +1,18 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="account_tags" directorySegmentName="seg_0" id="5DC9105E-FA49-F07F-11E5-AAEF39E9480C">
+<createdBy>lukasbajer</createdBy>
+<createdTime>2025-03-12 08:34:24 UTC</createdTime>
+<ownerDesignName>database_model</ownerDesignName>
+<engineerTo>
+<item key="1BA91464-C149-FA61-B278-7C189D87AC54" value="true"/>
+</engineerTo>
+<identifying>false</identifying>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>*</sourceCardinality>
+<sourceEntity>3B5BE7A6-5D63-2743-F219-4CEFE7026FFA</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>5D0F96F8-2D54-D2BA-C5C4-E6C3854B8E4D</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>

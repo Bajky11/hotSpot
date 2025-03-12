@@ -1,0 +1,18 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="followers_accounts" directorySegmentName="seg_0" id="F62BF686-CC58-AC7D-D6DE-99E061E4C293">
+<createdBy>lukasbajer</createdBy>
+<createdTime>2025-03-11 19:50:14 UTC</createdTime>
+<ownerDesignName>database_model</ownerDesignName>
+<engineerTo>
+<item key="1BA91464-C149-FA61-B278-7C189D87AC54" value="true"/>
+</engineerTo>
+<identifying>false</identifying>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>*</sourceCardinality>
+<sourceEntity>5D0F96F8-2D54-D2BA-C5C4-E6C3854B8E4D</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>5D0F96F8-2D54-D2BA-C5C4-E6C3854B8E4D</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>

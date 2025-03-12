@@ -1,0 +1,18 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="event_restrictions" directorySegmentName="seg_0" id="4040981D-D498-24C4-2F49-D0C9F0C86888">
+<createdBy>lukasbajer</createdBy>
+<createdTime>2025-03-12 10:02:48 UTC</createdTime>
+<ownerDesignName>database_model</ownerDesignName>
+<engineerTo>
+<item key="1BA91464-C149-FA61-B278-7C189D87AC54" value="true"/>
+</engineerTo>
+<identifying>false</identifying>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>*</sourceCardinality>
+<sourceEntity>30D7E3D6-E347-B48B-102B-9825E6ABAC29</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>DF7C3482-6064-BB71-B429-ED78017D4DEF</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>

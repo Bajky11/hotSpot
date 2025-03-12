@@ -24,3 +24,7 @@ target/
 
 # Docker
 docker-compose.override.yml
+**/*.localz
+**/*.local
+**/*.git
+**/*.DS_Store
