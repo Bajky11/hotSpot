@@ -16,8 +16,8 @@
 <objectViews>
 <OView class="oracle.dbtools.crest.swingui.TVNote" oid="093264FB-670F-4959-CCD2-606D0A6FDD21" otype="Note" vid="0BE7C617-37F6-BB4C-ACBD-B795012A4B2B">
 <hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
-<bounds x="699" y="168" width="95" height="40"/>
-<comment>Company name a zobrazit</comment>
+<bounds x="484" y="91" width="136" height="72"/>
+<comment>Nějak tu tabulku rozdělit na personal a company ucty? Nevím..</comment>
 </OView>
 <OView class="oracle.dbtools.crest.swingui.logical.TVEntity" oid="30D7E3D6-E347-B48B-102B-9825E6ABAC29" otype="Entity" vid="07D7BF7D-E14B-1FEB-CD20-D97945F02300">
 <hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>

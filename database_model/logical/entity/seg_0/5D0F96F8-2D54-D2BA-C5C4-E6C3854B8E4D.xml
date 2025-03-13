@@ -53,6 +53,19 @@
 <logicalDatatype>LOGDT019</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
+<Attribute name="company_name" id="4FD40DFC-7111-7726-0FFE-D679B392A1A6">
+<createdBy>lukasbajer</createdBy>
+<createdTime>2025-03-12 19:25:42 UTC</createdTime>
+<ownerDesignName>database_model</ownerDesignName>
+<engineerTo>
+<item key="1BA91464-C149-FA61-B278-7C189D87AC54" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
 <Attribute name="name" id="B45D17D3-9AC4-50F5-C0AD-1DCA3DD3C595">
 <createdBy>lukasbajer</createdBy>
 <createdTime>2025-03-11 19:32:20 UTC</createdTime>
