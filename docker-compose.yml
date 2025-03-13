@@ -2,18 +2,22 @@ version: '3.8'
 
 services:
   db:
-    image: postgres:15
+     # Použití PostGIS image místo čistého PostgreSQL pro geolokační data.
+    image: postgis/postgis:15-3.4
+     #  TODO: Konfigurace správné architektury image, nutné pro Mac ARM, jelikož není dostupná arm64 verze. Probihá emulace přes Rossetu - POMALE!
+    platform: linux/amd64
     container_name: "${APP_NAME}-db"
     restart: always
     environment:
       POSTGRES_USER: ${SPRING_DATASOURCE_USERNAME}
       POSTGRES_PASSWORD: ${SPRING_DATASOURCE_PASSWORD}
-      POSTGRES_DB: timeIsMoney_db
+      #POSTGRES_DB: db # <- Name of created database accesed by url: jdbc:postgresql://localhost:5432/db
       PGPORT: "${DB_PORT}"
     ports:
       - "${DB_PORTS}"
     volumes:
       - postgres_data:/var/lib/postgresql/data
+      - ./init-postgis.sql:/docker-entrypoint-initdb.d/init-postgis.sql
     networks:
       - bajerlukascz_network
 
@@ -32,20 +36,6 @@ services:
     networks:
       - bajerlukascz_network
     command: [ "java", "-jar", "app.jar" ]
-
-  fe:
-    build:
-      context: ./frontend
-      args:
-        REACT_APP_API_URL: ${REACT_APP_API_URL}
-    container_name: "${APP_NAME}-fe"
-    ports:
-      - "${FE_PORTS}"
-    depends_on:
-      - be
-    restart: always
-    networks:
-      - bajerlukascz_network
 
 volumes:
   postgres_data:

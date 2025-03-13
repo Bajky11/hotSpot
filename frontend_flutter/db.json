@@ -1,0 +1,24 @@
+{
+    "tickLists": [
+        {
+            "id": "1",
+            "name": "První seznam"
+        },
+        {
+            "id": "2",
+            "name": "Druhý seznam"
+        },
+        {
+            "id": "2",
+            "name": "Třetí seznam"
+        },
+        {
+            "id": "2",
+            "name": "Čtvrtý seznam"
+        },
+        {
+            "id": "2",
+            "name": "Pátý seznam"
+        }
+    ]
+}
